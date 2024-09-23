@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sederhana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Form Pendaftaran</h1>
+    <form id="registrationForm">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <button type="submit">Kirim</button>
+    </form>
+    
+    <div id="message" class="success"></div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            // Mengambil nilai dari input
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Validasi (jika diperlukan)
+            if (name && email) {
+                document.getElementById('message').innerText = `Terima kasih, ${name}! Anda telah terdaftar dengan email ${email}.`;
+                document.getElementById('message').classList.remove('error');
+                document.getElementById('message').classList.add('success');
+                
+                // Reset form setelah submit
+                document.getElementById('registrationForm').reset();
+            } else {
+                document.getElementById('message').innerText = 'Mohon isi semua field.';
+                document.getElementById('message').classList.remove('success');
+                document.getElementById('message').classList.add('error');
+            }
+        });
+    </script>
+
+</body>
+</html>
